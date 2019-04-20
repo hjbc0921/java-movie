@@ -1,5 +1,7 @@
 package domain;
 
+import view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,5 +43,24 @@ public class MovieRepository {
 
     public static List<Movie> getMovies() {
         return movies;
+    }
+
+    public static Movie getMovieById(int movieId) {
+        for (Movie m : movies) {
+            if (m.hasSameId(movieId)) {
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public static boolean isValidMovieId(int movieId) {
+        for (Movie m : movies) {
+            if (m.hasSameId(movieId)) {
+                return true;
+            }
+        }
+        OutputView.printNoSuchMovieWarning();
+        return false;
     }
 }
